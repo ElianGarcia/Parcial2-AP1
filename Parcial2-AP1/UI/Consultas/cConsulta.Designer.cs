@@ -187,6 +187,7 @@
             this.materialLabel1.Size = new System.Drawing.Size(74, 19);
             this.materialLabel1.TabIndex = 11;
             this.materialLabel1.Text = "Consultar";
+            this.materialLabel1.Click += new System.EventHandler(this.Consultarbutton_Click);
             // 
             // pictureBox1
             // 
@@ -197,6 +198,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(31, 32);
             this.pictureBox1.TabIndex = 12;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.Consultarbutton_Click);
             // 
             // cConsulta
             // 

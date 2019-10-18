@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(rRegistro));
             this.Guardarbutton = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.Nuevobutton = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -54,6 +56,7 @@
             this.materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
             this.shapeContainer3 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -63,6 +66,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // Guardarbutton
@@ -77,6 +81,7 @@
             this.Guardarbutton.Location = new System.Drawing.Point(174, 5);
             this.Guardarbutton.Name = "Guardarbutton";
             this.Guardarbutton.Size = new System.Drawing.Size(106, 54);
+            this.Guardarbutton.Click += new System.EventHandler(this.Guardarbutton_Click);
             // 
             // Nuevobutton
             // 
@@ -90,6 +95,7 @@
             this.Nuevobutton.Location = new System.Drawing.Point(16, 4);
             this.Nuevobutton.Name = "Nuevobutton";
             this.Nuevobutton.Size = new System.Drawing.Size(106, 55);
+            this.Nuevobutton.Click += new System.EventHandler(this.Nuevobutton_Click);
             // 
             // panel1
             // 
@@ -114,6 +120,7 @@
             this.pictureBox3.Size = new System.Drawing.Size(33, 34);
             this.pictureBox3.TabIndex = 3;
             this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.Eliminarbutton_Click);
             // 
             // pictureBox2
             // 
@@ -124,6 +131,7 @@
             this.pictureBox2.Size = new System.Drawing.Size(33, 34);
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.Guardarbutton_Click);
             // 
             // pictureBox1
             // 
@@ -134,6 +142,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(33, 34);
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.Nuevobutton_Click);
             // 
             // materialLabel3
             // 
@@ -148,6 +157,7 @@
             this.materialLabel3.Size = new System.Drawing.Size(64, 19);
             this.materialLabel3.TabIndex = 2;
             this.materialLabel3.Text = "Eliminar";
+            this.materialLabel3.Click += new System.EventHandler(this.Eliminarbutton_Click);
             // 
             // materialLabel2
             // 
@@ -162,6 +172,7 @@
             this.materialLabel2.Size = new System.Drawing.Size(61, 19);
             this.materialLabel2.TabIndex = 2;
             this.materialLabel2.Text = "Guardar";
+            this.materialLabel2.Click += new System.EventHandler(this.Guardarbutton_Click);
             // 
             // materialLabel1
             // 
@@ -176,6 +187,7 @@
             this.materialLabel1.Size = new System.Drawing.Size(52, 19);
             this.materialLabel1.TabIndex = 1;
             this.materialLabel1.Text = "Nuevo";
+            this.materialLabel1.Click += new System.EventHandler(this.Nuevobutton_Click);
             // 
             // shapeContainer2
             // 
@@ -202,6 +214,7 @@
             this.Eliminarbutton.Location = new System.Drawing.Point(329, 4);
             this.Eliminarbutton.Name = "Eliminarbutton";
             this.Eliminarbutton.Size = new System.Drawing.Size(106, 55);
+            this.Eliminarbutton.Click += new System.EventHandler(this.Eliminarbutton_Click);
             // 
             // materialLabel4
             // 
@@ -239,6 +252,7 @@
             this.Buscarbutton.Location = new System.Drawing.Point(165, 3);
             this.Buscarbutton.Name = "Buscarbutton";
             this.Buscarbutton.Size = new System.Drawing.Size(45, 35);
+            this.Buscarbutton.Click += new System.EventHandler(this.Buscarbutton_Click);
             // 
             // materialLabel5
             // 
@@ -246,7 +260,7 @@
             this.materialLabel5.Depth = 0;
             this.materialLabel5.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel5.Location = new System.Drawing.Point(229, 9);
+            this.materialLabel5.Location = new System.Drawing.Point(265, 9);
             this.materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel5.Name = "materialLabel5";
             this.materialLabel5.Size = new System.Drawing.Size(61, 19);
@@ -256,7 +270,7 @@
             // FechadateTimePicker
             // 
             this.FechadateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.FechadateTimePicker.Location = new System.Drawing.Point(282, 9);
+            this.FechadateTimePicker.Location = new System.Drawing.Point(332, 9);
             this.FechadateTimePicker.Name = "FechadateTimePicker";
             this.FechadateTimePicker.Size = new System.Drawing.Size(105, 20);
             this.FechadateTimePicker.TabIndex = 6;
@@ -281,6 +295,7 @@
             this.Removerbutton.Location = new System.Drawing.Point(3, 134);
             this.Removerbutton.Name = "Removerbutton";
             this.Removerbutton.Size = new System.Drawing.Size(106, 39);
+            this.Removerbutton.Click += new System.EventHandler(this.Removerbutton_Click);
             // 
             // materialLabel6
             // 
@@ -295,6 +310,7 @@
             this.materialLabel6.Size = new System.Drawing.Size(68, 19);
             this.materialLabel6.TabIndex = 8;
             this.materialLabel6.Text = "Remover";
+            this.materialLabel6.Click += new System.EventHandler(this.Removerbutton_Click);
             // 
             // pictureBox5
             // 
@@ -305,6 +321,7 @@
             this.pictureBox5.Size = new System.Drawing.Size(33, 34);
             this.pictureBox5.TabIndex = 4;
             this.pictureBox5.TabStop = false;
+            this.pictureBox5.Click += new System.EventHandler(this.Removerbutton_Click);
             // 
             // pictureBox4
             // 
@@ -315,6 +332,7 @@
             this.pictureBox4.Size = new System.Drawing.Size(35, 29);
             this.pictureBox4.TabIndex = 4;
             this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.Buscarbutton_Click);
             // 
             // groupBox1
             // 
@@ -378,6 +396,11 @@
             this.numericUpDown1.Size = new System.Drawing.Size(102, 25);
             this.numericUpDown1.TabIndex = 10;
             // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            this.errorProvider.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider.Icon")));
+            // 
             // rRegistro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -404,6 +427,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -437,5 +461,6 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel7;
         private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer3;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

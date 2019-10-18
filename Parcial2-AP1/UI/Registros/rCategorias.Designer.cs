@@ -37,6 +37,7 @@
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.Nuevobutton = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
+            this.Buscarbutton = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.Eliminarbutton = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.Guardarbutton = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -45,7 +46,6 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.rectangleShape1 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.IDnumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
@@ -116,13 +116,27 @@
             this.shapeContainer1.Margin = new System.Windows.Forms.Padding(0);
             this.shapeContainer1.Name = "shapeContainer1";
             this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
-            this.rectangleShape1,
+            this.Buscarbutton,
             this.Eliminarbutton,
             this.Guardarbutton,
             this.Nuevobutton});
             this.shapeContainer1.Size = new System.Drawing.Size(364, 168);
             this.shapeContainer1.TabIndex = 16;
             this.shapeContainer1.TabStop = false;
+            // 
+            // Buscarbutton
+            // 
+            this.Buscarbutton.BackColor = System.Drawing.Color.Chocolate;
+            this.Buscarbutton.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+            this.Buscarbutton.BorderColor = System.Drawing.Color.MediumBlue;
+            this.Buscarbutton.BorderWidth = 3;
+            this.Buscarbutton.FillColor = System.Drawing.Color.Snow;
+            this.Buscarbutton.FillGradientColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.Buscarbutton.FillStyle = Microsoft.VisualBasic.PowerPacks.FillStyle.Solid;
+            this.Buscarbutton.Location = new System.Drawing.Point(283, 7);
+            this.Buscarbutton.Name = "Buscarbutton";
+            this.Buscarbutton.Size = new System.Drawing.Size(45, 35);
+            this.Buscarbutton.Click += new System.EventHandler(this.Buscarbutton_Click);
             // 
             // Eliminarbutton
             // 
@@ -161,6 +175,7 @@
             this.pictureBox2.Size = new System.Drawing.Size(33, 34);
             this.pictureBox2.TabIndex = 17;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.Guardarbutton_Click);
             // 
             // materialLabel2
             // 
@@ -175,6 +190,7 @@
             this.materialLabel2.Size = new System.Drawing.Size(61, 19);
             this.materialLabel2.TabIndex = 18;
             this.materialLabel2.Text = "Guardar";
+            this.materialLabel2.Click += new System.EventHandler(this.Guardarbutton_Click);
             // 
             // materialLabel1
             // 
@@ -189,6 +205,7 @@
             this.materialLabel1.Size = new System.Drawing.Size(64, 19);
             this.materialLabel1.TabIndex = 19;
             this.materialLabel1.Text = "Eliminar";
+            this.materialLabel1.Click += new System.EventHandler(this.Eliminarbutton_Click);
             // 
             // pictureBox3
             // 
@@ -199,6 +216,7 @@
             this.pictureBox3.Size = new System.Drawing.Size(33, 34);
             this.pictureBox3.TabIndex = 20;
             this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.Eliminarbutton_Click);
             // 
             // materialLabel3
             // 
@@ -213,6 +231,7 @@
             this.materialLabel3.Size = new System.Drawing.Size(52, 19);
             this.materialLabel3.TabIndex = 21;
             this.materialLabel3.Text = "Nuevo";
+            this.materialLabel3.Click += new System.EventHandler(this.Nuevobutton_Click);
             // 
             // pictureBox1
             // 
@@ -223,19 +242,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(33, 34);
             this.pictureBox1.TabIndex = 22;
             this.pictureBox1.TabStop = false;
-            // 
-            // rectangleShape1
-            // 
-            this.rectangleShape1.BackColor = System.Drawing.Color.Chocolate;
-            this.rectangleShape1.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
-            this.rectangleShape1.BorderColor = System.Drawing.Color.MediumBlue;
-            this.rectangleShape1.BorderWidth = 3;
-            this.rectangleShape1.FillColor = System.Drawing.Color.Snow;
-            this.rectangleShape1.FillGradientColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.rectangleShape1.FillStyle = Microsoft.VisualBasic.PowerPacks.FillStyle.Solid;
-            this.rectangleShape1.Location = new System.Drawing.Point(283, 7);
-            this.rectangleShape1.Name = "rectangleShape1";
-            this.rectangleShape1.Size = new System.Drawing.Size(45, 35);
+            this.pictureBox1.Click += new System.EventHandler(this.Nuevobutton_Click);
             // 
             // pictureBox4
             // 
@@ -246,6 +253,7 @@
             this.pictureBox4.Size = new System.Drawing.Size(31, 29);
             this.pictureBox4.TabIndex = 23;
             this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.Buscarbutton_Click);
             // 
             // rCategorias
             // 
@@ -294,6 +302,6 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel3;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape1;
+        private Microsoft.VisualBasic.PowerPacks.RectangleShape Buscarbutton;
     }
 }
