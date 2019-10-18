@@ -52,7 +52,7 @@
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.TotalTextfield = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.TotalTextbox = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
             this.shapeContainer3 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
@@ -164,12 +164,12 @@
             this.materialLabel2.AutoSize = true;
             this.materialLabel2.BackColor = System.Drawing.Color.Snow;
             this.materialLabel2.Depth = 0;
-            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialLabel2.Location = new System.Drawing.Point(198, 39);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
-            this.materialLabel2.Size = new System.Drawing.Size(61, 19);
+            this.materialLabel2.Size = new System.Drawing.Size(62, 18);
             this.materialLabel2.TabIndex = 2;
             this.materialLabel2.Text = "Guardar";
             this.materialLabel2.Click += new System.EventHandler(this.Guardarbutton_Click);
@@ -336,7 +336,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.TotalTextfield);
+            this.groupBox1.Controls.Add(this.TotalTextbox);
             this.groupBox1.Controls.Add(this.materialLabel7);
             this.groupBox1.Controls.Add(this.dataGridView1);
             this.groupBox1.Controls.Add(this.pictureBox5);
@@ -349,20 +349,20 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
-            // TotalTextfield
+            // TotalTextbox
             // 
-            this.TotalTextfield.Depth = 0;
-            this.TotalTextfield.Hint = "";
-            this.TotalTextfield.Location = new System.Drawing.Point(324, 156);
-            this.TotalTextfield.MouseState = MaterialSkin.MouseState.HOVER;
-            this.TotalTextfield.Name = "TotalTextfield";
-            this.TotalTextfield.PasswordChar = '\0';
-            this.TotalTextfield.SelectedText = "";
-            this.TotalTextfield.SelectionLength = 0;
-            this.TotalTextfield.SelectionStart = 0;
-            this.TotalTextfield.Size = new System.Drawing.Size(110, 23);
-            this.TotalTextfield.TabIndex = 10;
-            this.TotalTextfield.UseSystemPasswordChar = false;
+            this.TotalTextbox.Depth = 0;
+            this.TotalTextbox.Hint = "";
+            this.TotalTextbox.Location = new System.Drawing.Point(324, 156);
+            this.TotalTextbox.MouseState = MaterialSkin.MouseState.HOVER;
+            this.TotalTextbox.Name = "TotalTextbox";
+            this.TotalTextbox.PasswordChar = '\0';
+            this.TotalTextbox.SelectedText = "";
+            this.TotalTextbox.SelectionLength = 0;
+            this.TotalTextbox.SelectionStart = 0;
+            this.TotalTextbox.Size = new System.Drawing.Size(110, 23);
+            this.TotalTextbox.TabIndex = 10;
+            this.TotalTextbox.UseSystemPasswordChar = false;
             // 
             // materialLabel7
             // 
@@ -415,7 +415,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.shapeContainer1);
             this.Name = "rRegistro";
-            this.Text = "rPrincipal";
+            this.Text = "Registro";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -457,7 +457,7 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel6;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.GroupBox groupBox1;
-        private MaterialSkin.Controls.MaterialSingleLineTextField TotalTextfield;
+        private MaterialSkin.Controls.MaterialSingleLineTextField TotalTextbox;
         private MaterialSkin.Controls.MaterialLabel materialLabel7;
         private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer3;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
