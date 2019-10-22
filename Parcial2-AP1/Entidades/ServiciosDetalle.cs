@@ -13,6 +13,7 @@ namespace Parcial2_AP1.Entidades
         public int ServiciosDetalleID { get; set; }
         public int CategoriaID { get; set; }
         public int Cantidad { get; set; }
+        public string Nombre { get; set; }
         public decimal Precio { get; set; }
         public decimal Importe { get; set; }
 
@@ -33,6 +34,7 @@ namespace Parcial2_AP1.Entidades
         public ServiciosDetalle(int serviciosDetalleID, int categoriaID, string nombre, int cantidad, decimal precio, decimal importe)
         {
             ServiciosDetalleID = serviciosDetalleID;
+            Nombre = nombre;
             CategoriaID = categoriaID;
             Cantidad = cantidad;
             Precio = precio;

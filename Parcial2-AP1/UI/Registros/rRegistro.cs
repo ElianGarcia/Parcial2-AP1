@@ -167,7 +167,7 @@ namespace Parcial2_AP1.UI.Registros
 
         private bool Validar()
         {
-            bool validado = false;
+            bool validado = true;
 
             if (string.IsNullOrWhiteSpace(estudianteTextBox.Text))
             {
