@@ -10,20 +10,15 @@ using System.Threading.Tasks;
 
 namespace Parcial2_AP1.BLL
 {
-    public class ServiciosBLL
+    public class ServiciosBLL : GenericaBLL<Servicios>
     {
-        public static bool Guardar(Servicios servicio)
+        public override bool Guardar(Servicios servicio)
         {
             bool realizado = false;
             Contexto db = new Contexto();
 
             try
             {
-                foreach (var item in servicio.ServiciosDetalle)
-                {
-                    var categoria = db.Categoria.Find(item.CategoriaID);
-                }
-
                 if (db.Servicio.Add(servicio) != null)
                     realizado = db.SaveChanges() > 0;
             }
@@ -40,17 +35,18 @@ namespace Parcial2_AP1.BLL
             return realizado;
         }
 
-        public static bool Modificar(Servicios servicio)
+        public override bool Modificar(Servicios servicio)
         {
             bool realizado = false;
             Contexto db = new Contexto();
+            GenericaBLL<Servicios> genericaBLL = new GenericaBLL<Servicios>();
 
             try
             {
-                var Anterior = ServiciosBLL.Buscar(servicio.ServiciosID);
-                foreach (var item in Anterior.ServiciosDetalle)
+                var Anterior = genericaBLL.Buscar(servicio.ServiciosID);
+                foreach (var item in Anterior.Venta)
                 {
-                    if (!servicio.ServiciosDetalle.Exists(d => d.ServiciosDetalleID == item.ServiciosDetalleID))
+                    if (!servicio.Venta.Exists(d => d.ServiciosDetalleID == item.ServiciosDetalleID))
                         db.Entry(item).State = EntityState.Deleted;
                 }
                 db.Entry(servicio).State = EntityState.Modified;
@@ -67,76 +63,6 @@ namespace Parcial2_AP1.BLL
             }
 
             return realizado;
-        }
-
-        public static bool Eliminar(int id)
-        {
-            bool realizado = false;
-            Contexto db = new Contexto();
-
-            try
-            {
-                var eliminar = db.Servicio.Find(id);
-                db.Entry(eliminar).State = EntityState.Deleted;
-                realizado = (db.SaveChanges() > 0);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-
-            finally
-            {
-                db.Dispose();
-            }
-
-            return realizado;
-        }
-
-        public static Servicios Buscar(int id)
-        {
-            Contexto db = new Contexto();
-            Servicios servicio = new Servicios();
-
-            try
-            {
-                servicio = db.Servicio.Find(id);
-                if (servicio != null)
-                    servicio.Estudiante.Count();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-
-            finally
-            {
-                db.Dispose();
-            }
-
-            return servicio;
-        }
-
-        public static List<Servicios> GetList(Expression<Func<Servicios, bool>> asistencia)
-        {
-            List<Servicios> Lista = new List<Servicios>();
-            Contexto db = new Contexto();
-
-            try
-            {
-                Lista = db.Servicio.Where(asistencia).ToList();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-
-            finally
-            {
-                db.Dispose();
-            }
-
-            return Lista;
         }
     }
 }

@@ -21,19 +21,27 @@ namespace Parcial2_AP1.UI.Consultas
 
         private void Consultarbutton_Click(object sender, EventArgs e)
         {
-            var listado = new List<ServiciosDetalle>();
-            GenericaBLL<Servicios> ServiciosBLL = new GenericaBLL<Servicios>();
+            var listado = new List<Servicios>();
+            GenericaBLL<Servicios> genericaBLL = new GenericaBLL<Servicios>();
 
             if (tbCriterio.Text.Trim().Length > 0)
             {
                 switch (cbFiltrar.SelectedIndex)
                 {
                     case 0:
-                        listado = GenericaBLL.GetList(p => true);
+                        listado = genericaBLL.GetList(p => true);
                         break;
                     case 1:
                         int id = Convert.ToInt32(tbCriterio.Text);
-                        listado = ServiciosBLL.GetList(servicio => servicio.ServiciosID == id);
+                        listado = genericaBLL.GetList(servicio => servicio.ServiciosID == id);
+                        break;
+                    case 2: 
+                        string nombre = tbCriterio.Text;
+                        listado = genericaBLL.GetList(p => p.Estudiante == nombre);
+                        break;
+                    case 3: 
+                        decimal total = Convert.ToDecimal(tbCriterio.Text);
+                        listado = genericaBLL.GetList(p => p.Total == total);
                         break;
                 }
 
@@ -41,7 +49,7 @@ namespace Parcial2_AP1.UI.Consultas
             }
             else
             {
-                listado = AsistenciasBLL.GetList(p => true);
+                listado = ServiciosBLL.GetList(p => true);
             }
 
             ConsultaDataGridView.DataSource = null;

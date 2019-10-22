@@ -15,13 +15,14 @@ namespace Parcial2_AP1.UI.Registros
 {
     public partial class rRegistro : Form
     {
-        GenericaBLL<Servicios> genericaBLL = new GenericaBLL<Servicios>();
         List<ServiciosDetalle> ServiciosDetalle;
-        private double total;
+        GenericaBLL<Servicios> genericaBLL;
+        private decimal total;
 
         public rRegistro()
         {
-            ServiciosDetalle = new List<ServiciosDetalle>();
+            this.genericaBLL = new GenericaBLL<Servicios>();
+            this.ServiciosDetalle = new List<ServiciosDetalle>();
             total = 0;
             InitializeComponent();
             LlenarComboBox();
@@ -39,11 +40,14 @@ namespace Parcial2_AP1.UI.Registros
         {
             IDnumericUpDown.Value = 0;
             estudianteTextBox.Text = string.Empty;
-            CategoriascomboBox.SelectedValue = -1;
+            CategoriascomboBox.Text = string.Empty;
             FechadateTimePicker.Value = DateTime.Now;
+            this.ServiciosDetalle = new List<ServiciosDetalle>();
             CantidadTextField.Text = string.Empty;
             PrecioTextField.Text = string.Empty;
             ImporteTextField.Text = string.Empty;
+            errorProvider.Clear();
+            CargarGrid();
         }
 
         private bool Existe()
@@ -51,16 +55,6 @@ namespace Parcial2_AP1.UI.Registros
             Servicios servicio = genericaBLL.Buscar((int)IDnumericUpDown.Value);
 
             return (servicio != null);
-        }
-
-        public void RemoverFila()
-        {
-            if (dataGridView.Rows.Count > 0 && dataGridView.CurrentRow != null)
-            {
-                ServiciosDetalle.RemoveAt(dataGridView.CurrentRow.Index);
-                TotalTextbox.Text = Convert.ToString(total -= Convert.ToDouble(TotalTextbox.Text));
-                CargarGrid();
-            }
         }
 
         public void LlenarComboBox()
@@ -99,16 +93,19 @@ namespace Parcial2_AP1.UI.Registros
         {
             IDnumericUpDown.Value = servicios.ServiciosID;
             estudianteTextBox.Text = servicios.Estudiante;
-            CategoriascomboBox.SelectedValue = servicios.CategoriaID;
             FechadateTimePicker.Value = servicios.Fecha;
-            dataGridView.DataSource = servicios.ServiciosDetalle;
+            TotalTextbox.Text = servicios.Total.ToString();
+            dataGridView.DataSource = servicios.Venta;
         }
 
         private void Removerbutton_Click(object sender, EventArgs e)
         {
             if (dataGridView.Rows.Count > 0 && dataGridView.CurrentRow != null)
             {
+                decimal valorEliminar = Convert.ToDecimal(dataGridView.CurrentRow.Cells[5].Value);
+                total -= valorEliminar;
                 ServiciosDetalle.RemoveAt(dataGridView.CurrentRow.Index);
+                TotalTextbox.Text = total.ToString();
                 CargarGrid();
             }
         }
@@ -158,9 +155,9 @@ namespace Parcial2_AP1.UI.Registros
 
             servicios.ServiciosID = Convert.ToInt32(IDnumericUpDown.Value);
             servicios.Estudiante = estudianteTextBox.Text;
-            servicios.CategoriaID = Convert.ToInt32(CategoriascomboBox.SelectedValue);
             servicios.Fecha = FechadateTimePicker.Value;
-            servicios.ServiciosDetalle = this.ServiciosDetalle;
+            servicios.Total = Convert.ToDecimal(TotalTextbox.Text);
+            servicios.Venta = this.ServiciosDetalle;
 
             return servicios;
         }
@@ -213,28 +210,36 @@ namespace Parcial2_AP1.UI.Registros
 
         private void agregarCategoriaButton_Click(object sender, EventArgs e)
         {
-            GenericaBLL<Categorias> genericaCategoriasBLL = new GenericaBLL<Categorias>();
-
             if (dataGridView.DataSource != null)
             {
                 this.ServiciosDetalle = (List<ServiciosDetalle>)dataGridView.DataSource;
             }
+            GenericaBLL<Categorias> Categorias = new GenericaBLL<Categorias>();
 
-            string nombre = genericaCategoriasBLL.Buscar(id: (int)CategoriascomboBox.SelectedIndex + 1).Nombre;
+            string nombre = Categorias.Buscar(id: (int)CategoriascomboBox.SelectedIndex + 1).Nombre;
 
             this.ServiciosDetalle.Add(new ServiciosDetalle(
-                serviciosDetalleID: Convert.ToInt32(IDnumericUpDown.Value),
+                serviciosDetalleID: 0,
+                categoriaID: (int)CategoriascomboBox.SelectedIndex,
                 nombre,
                 cantidad: Convert.ToInt32(CantidadTextField.Text),
-                precio: Convert.ToDouble(PrecioTextField.Text),
-                importe: Convert.ToDouble(ImporteTextField.Text),
-                total: Convert.ToDouble(TotalTextbox.Text)
+                precio: Convert.ToDecimal(PrecioTextField.Text),
+                importe: Importe()
                 )
             );
 
-            TotalTextbox.Text = Convert.ToString(total += Convert.ToDouble(TotalTextbox.Text));
-
+            TotalTextbox.Text = Convert.ToString(total += Convert.ToDecimal(TotalTextbox.Text));
+            errorProvider.Clear();
             CargarGrid();
+        }
+
+        private decimal Importe()
+        {
+            decimal cantidad = Convert.ToInt32(CantidadTextField.Text);
+            decimal precio = Convert.ToDecimal(PrecioTextField.Text);
+
+            return Convert.ToDecimal(cantidad * precio);
+            
         }
     }
 }
