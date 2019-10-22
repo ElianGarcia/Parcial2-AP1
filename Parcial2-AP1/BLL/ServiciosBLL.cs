@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace Parcial2_AP1.BLL
 {
-    public class ServiciosBLL : GenericaBLL<Servicios>
+    public class ServiciosBLL
     {
-        public new bool Guardar(Servicios servicio)
+        public bool Guardar(Servicios servicio)
         {
             bool realizado = false;
             Contexto db = new Contexto();
@@ -36,7 +36,7 @@ namespace Parcial2_AP1.BLL
             return realizado;
         }
 
-        public new bool Modificar(Servicios servicio)
+        public bool Modificar(Servicios servicio)
         {
             bool realizado = false;
             Contexto db = new Contexto();

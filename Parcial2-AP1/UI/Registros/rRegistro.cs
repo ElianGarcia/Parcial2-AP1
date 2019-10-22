@@ -34,8 +34,8 @@ namespace Parcial2_AP1.UI.Registros
 
             dataGridView.DataSource = null;
             dataGridView.DataSource = this.ServiciosDetalle;
-            dataGridView.Columns["DetalleVentaID"].Visible = false;
-            dataGridView.Columns["VentaID"].Visible = false;
+            dataGridView.Columns["ServiciosDetalleID"].Visible = false;
+            dataGridView.Columns["CategoriaID"].Visible = false;
         }
 
         public void Limpiar()
@@ -120,6 +120,7 @@ namespace Parcial2_AP1.UI.Registros
         private void Guardarbutton_Click(object sender, EventArgs e)
         {
             Servicios servicio = new Servicios();
+            ServiciosBLL servicios = new ServiciosBLL();
             bool realizado = false;
 
             if (!Validar())
@@ -129,7 +130,7 @@ namespace Parcial2_AP1.UI.Registros
 
 
             if (IDnumericUpDown.Value == 0)
-                realizado = genericaBLL.Guardar(servicio);
+                realizado = servicios.Guardar(servicio);
             else
             {
                 if (!Existe())
@@ -137,7 +138,7 @@ namespace Parcial2_AP1.UI.Registros
                     MessageBox.Show("NO SE PUEDE MODIFICAR UN SERVICIO INEXISTENTE", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                realizado = genericaBLL.Modificar(servicio);
+                realizado = servicios.Modificar(servicio);
             }
 
             if (realizado)
