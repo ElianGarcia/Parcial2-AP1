@@ -461,6 +461,7 @@
             // ImporteTextField
             // 
             this.ImporteTextField.Depth = 0;
+            this.ImporteTextField.Enabled = false;
             this.ImporteTextField.Hint = "";
             this.ImporteTextField.Location = new System.Drawing.Point(311, 37);
             this.ImporteTextField.MouseState = MaterialSkin.MouseState.HOVER;
@@ -508,6 +509,7 @@
             this.PrecioTextField.Size = new System.Drawing.Size(85, 23);
             this.PrecioTextField.TabIndex = 17;
             this.PrecioTextField.UseSystemPasswordChar = false;
+            this.PrecioTextField.TextChanged += new System.EventHandler(this.PrecioTextField_TextChanged);
             // 
             // CantidadTextField
             // 

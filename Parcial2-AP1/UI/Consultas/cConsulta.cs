@@ -49,7 +49,7 @@ namespace Parcial2_AP1.UI.Consultas
             }
             else
             {
-                listado = ServiciosBLL.GetList(p => true);
+                listado = genericaBLL.GetList(p => true);
             }
 
             ConsultaDataGridView.DataSource = null;

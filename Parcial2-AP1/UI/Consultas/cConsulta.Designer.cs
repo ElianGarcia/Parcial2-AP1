@@ -88,7 +88,9 @@
             this.cbFiltrar.FormattingEnabled = true;
             this.cbFiltrar.Items.AddRange(new object[] {
             "Todo",
-            "ID"});
+            "ID",
+            "Nombre",
+            "Monto"});
             this.cbFiltrar.Location = new System.Drawing.Point(212, 26);
             this.cbFiltrar.Margin = new System.Windows.Forms.Padding(2);
             this.cbFiltrar.Name = "cbFiltrar";

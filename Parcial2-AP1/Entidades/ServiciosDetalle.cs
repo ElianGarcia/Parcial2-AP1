@@ -30,13 +30,13 @@ namespace Parcial2_AP1.Entidades
 
         }
 
-        public ServiciosDetalle(int serviciosDetalleID, string nombre, int cantidad, double precio, double importe, double total)
+        public ServiciosDetalle(int serviciosDetalleID, int categoriaID, string nombre, int cantidad, decimal precio, decimal importe)
         {
             ServiciosDetalleID = serviciosDetalleID;
+            CategoriaID = categoriaID;
             Cantidad = cantidad;
             Precio = precio;
             Importe = importe;
-            Total = total;
         }
     }
 }

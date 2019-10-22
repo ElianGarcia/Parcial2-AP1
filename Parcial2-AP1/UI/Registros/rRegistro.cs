@@ -34,6 +34,8 @@ namespace Parcial2_AP1.UI.Registros
 
             dataGridView.DataSource = null;
             dataGridView.DataSource = this.ServiciosDetalle;
+            dataGridView.Columns["DetalleVentaID"].Visible = false;
+            dataGridView.Columns["VentaID"].Visible = false;
         }
 
         public void Limpiar()
@@ -102,7 +104,7 @@ namespace Parcial2_AP1.UI.Registros
         {
             if (dataGridView.Rows.Count > 0 && dataGridView.CurrentRow != null)
             {
-                decimal valorEliminar = Convert.ToDecimal(dataGridView.CurrentRow.Cells[5].Value);
+                decimal valorEliminar = Convert.ToDecimal(dataGridView.CurrentRow.Cells[4].Value);
                 total -= valorEliminar;
                 ServiciosDetalle.RemoveAt(dataGridView.CurrentRow.Index);
                 TotalTextbox.Text = total.ToString();
@@ -172,12 +174,6 @@ namespace Parcial2_AP1.UI.Registros
                 estudianteTextBox.Focus();
                 validado = false;
             }
-            if (string.IsNullOrWhiteSpace(TotalTextbox.Text))
-            {
-                errorProvider.SetError(TotalTextbox, "El total no debe ser cero");
-                TotalTextbox.Focus();
-                validado = false;
-            }
             if (this.ServiciosDetalle.Count == 0)
             {
                 errorProvider.SetError(dataGridView, "Debe agregar algun servicio");
@@ -221,16 +217,65 @@ namespace Parcial2_AP1.UI.Registros
             this.ServiciosDetalle.Add(new ServiciosDetalle(
                 serviciosDetalleID: 0,
                 categoriaID: (int)CategoriascomboBox.SelectedIndex,
-                nombre,
+                nombre: nombre,
                 cantidad: Convert.ToInt32(CantidadTextField.Text),
                 precio: Convert.ToDecimal(PrecioTextField.Text),
                 importe: Importe()
                 )
             );
 
-            TotalTextbox.Text = Convert.ToString(total += Convert.ToDecimal(TotalTextbox.Text));
+            total += Importe();
+
+            TotalTextbox.Text = Convert.ToString(total);
             errorProvider.Clear();
             CargarGrid();
+        }
+
+        private bool ValidarDetalle()
+        {
+            errorProvider.Clear();
+            bool validado = true;
+            int cantidad = 0;
+            decimal precio = 0;
+
+            if (string.IsNullOrWhiteSpace(CantidadTextField.Text))
+            {
+                errorProvider.SetError(CantidadTextField, "El campo cantidad es obligatorio");
+                validado = false;
+            }
+            else
+            {
+                try
+                {
+                    cantidad = Convert.ToInt32(CantidadTextField.Text);
+                }
+                catch (Exception)
+                {
+                    errorProvider.SetError(CantidadTextField, "Este debe ser numerico.");
+                    validado = false;
+                }
+            }
+
+            if (string.IsNullOrWhiteSpace(PrecioTextField.Text))
+            {
+
+                errorProvider.SetError(PrecioTextField, "El campo precio es obligatorio");
+                validado = false;
+            }
+            else
+            {
+                try
+                {
+                    precio = Convert.ToInt32(PrecioTextField.Text);
+                }
+                catch (Exception)
+                {
+                    errorProvider.SetError(PrecioTextField, "Este debe ser numerico.");
+                    validado = false;
+                }
+            }
+
+            return validado;
         }
 
         private decimal Importe()
@@ -239,7 +284,18 @@ namespace Parcial2_AP1.UI.Registros
             decimal precio = Convert.ToDecimal(PrecioTextField.Text);
 
             return Convert.ToDecimal(cantidad * precio);
-            
+        }
+
+        private void PrecioTextField_TextChanged(object sender, EventArgs e)
+        {
+            if (!ValidarDetalle())
+                return;
+            errorProvider.Clear();
+            int cantidad = Convert.ToInt32(CantidadTextField.Text);
+            decimal precio = Convert.ToDecimal(PrecioTextField.Text);
+            decimal importe = cantidad * precio;
+
+            ImporteTextField.Text = importe.ToString();
         }
     }
 }

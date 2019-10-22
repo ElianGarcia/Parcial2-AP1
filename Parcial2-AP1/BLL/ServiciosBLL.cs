@@ -1,5 +1,6 @@
 ﻿using Parcial2_AP1.DAL;
 using Parcial2_AP1.Entidades;
+using Parcial2_AP1.BLL;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -12,7 +13,7 @@ namespace Parcial2_AP1.BLL
 {
     public class ServiciosBLL : GenericaBLL<Servicios>
     {
-        public override bool Guardar(Servicios servicio)
+        public new bool Guardar(Servicios servicio)
         {
             bool realizado = false;
             Contexto db = new Contexto();
@@ -35,7 +36,7 @@ namespace Parcial2_AP1.BLL
             return realizado;
         }
 
-        public override bool Modificar(Servicios servicio)
+        public new bool Modificar(Servicios servicio)
         {
             bool realizado = false;
             Contexto db = new Contexto();

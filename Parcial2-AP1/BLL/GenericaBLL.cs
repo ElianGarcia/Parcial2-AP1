@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using Parcial2_AP1.DAL;
+using Parcial2_AP1.Entidades;
 
 namespace Parcial2_AP1.BLL
 {
@@ -16,7 +17,7 @@ namespace Parcial2_AP1.BLL
             db = new Contexto();
         }
 
-        public T Buscar(int id)
+        public virtual T Buscar(int id)
         {
             T entity;
 
@@ -37,7 +38,7 @@ namespace Parcial2_AP1.BLL
             db.Dispose();
         }
 
-        public bool Eliminar(int id)
+        public virtual bool Eliminar(int id)
         {
             bool realizado = false;
 
